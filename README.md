@@ -1,36 +1,109 @@
-# Spring_E_commerce_website
-This project is a fully functional e-commerce website built using Spring MVC with Hibernate for database interaction and MySQL as the underlying database. In this new version, the entire codebase has been redesigned for better reusability and modularity. Service classes now provide reusable business logic across the project, while DAO classes directly interact with the database. Hibernate configuration has been added, allowing automatic creation of databases and tables when the project runs. Several bugs have also been fixed, including issues with product images and security, and the project now supports both IntelliJ IDEA and Eclipse.
+# 🛒 Spring E-Commerce Website
 
-To get started, first clone the repository and open the project in your IDE. IntelliJ IDEA is recommended, but Eclipse also works. If using IntelliJ IDEA, ensure the project is opened as a Maven project and recognized as a Spring Boot application. You must also update the working directory setting in your run configuration to $MODULE_WORKING_DIR$ to allow Spring Boot to properly locate the views stored in src/main/webapp/views.
+This is a fully functional **E-Commerce Website** built using **Spring MVC**, **Hibernate**, and **MySQL**. The application provides complete product management, user registration, and admin control features.
 
-Next, configure your database connection in the application.properties file found at src/main/resources/application.properties. Use the format:
+---
 
-db.url=jdbc:mysql://[ip address]:[port]/ecommjava?createDatabaseIfNotExist=true  
+## 🆕 What's New
 
-db.username=[your username]  
+- 🔧 **Hibernate configuration added** — databases and tables auto-create on project run.
+- ♻️ **Service classes** — reusable business logic across the application.
+- 🗃️ **DAO classes** — handle direct interactions with the database.
+- 🧩 **IDE Support** — compatible with both **IntelliJ IDEA** and **Eclipse**.
 
-db.password=[your password]  
+---
 
-Login Credentials: 
-If you’ve executed the basedata.sql script, the following users are available:
+## 🚀 Quickstart
 
-Admin: admin / 123
+### 1. Clone the Repository
+```bash
+git clone https://github.com/TejaswiDodda/Spring_E_commerce_website.git
+cd Spring_E_commerce_website
+```
 
-User: lisa / 765
+### 2. Open in Your IDE
+- Open as a **Maven project**
+- If using **IntelliJ IDEA**:
+  - Open as **Spring Boot project**
+  - Go to `Run > Edit Configurations...`
+  - Set **Working Directory** to `$MODULE_WORKING_DIR$`
 
-Application Structure:
-Controllers handle endpoint mappings and pass data to views using ModelAndView. For example, accessing /login renders adminlogin.jsp from the views directory. Models define the data entities and relationships, while views (JSP files) are responsible for rendering content using the data provided by controllers.
+### 3. Configure Database
+Update the following properties in `src/main/resources/application.properties`:
+```properties
+db.url=jdbc:mysql://localhost:3306/ecommjava?createDatabaseIfNotExist=true
+db.username=your_username
+db.password=your_password
+```
+
+> ⚠️ Tip: Avoid using `root` as your DB username for production. Ensure your user has appropriate privileges.
+
+---
+
+## 🔐 Login Credentials
+
+After importing base data (via `basedata.sql`), use these:
+
+- **Admin**  
+  - Username: `admin`  
+  - Password: `123`
+
+- **User**  
+  - Username: `lisa`  
+  - Password: `765`
+
+---
+
+## 🏗️ Application Structure
+
+```
+Spring_E_commerce_website/
+├── controller/        # Handles web requests and routes to views
+├── dao/               # Database interaction layer
+├── service/           # Business logic layer
+├── entity/            # Data models / JPA entities
+├── views/             # JSP files (web pages)
+└── application.properties # Configuration file
+```
+
+### Example Route
+```java
+@GetMapping("/login")
+public String adminLogin() {
+    return "adminlogin"; // maps to src/main/webapp/views/adminlogin.jsp
+}
+```
+
+---
+
+## 🌐 Common Endpoints
+
+- `/` → Home  
+- `/register` → User Registration  
+- `/admin/products` → Manage Products  
+- `/admin/customers` → View Customers  
+- `/admin/categories` → Product Categories  
+- `/admin/Dashboard` → Admin Dashboard
+
+---
+
+## 🧠 Technologies Used
+
+- **Spring MVC**
+- **Spring Boot**
+- **Hibernate**
+- **MySQL**
+- **JSP/Servlets**
+- **Maven**
+
+---
+
+## 🗃️ Web Directory Configuration (For IntelliJ Users)
+
+If views are not loading, set your working directory:
+- Go to **Run > Edit Configurations...**
+- Select `JtSpringProjectApplication`
+- Modify working directory to: `$MODULE_WORKING_DIR$`
+- Click Apply & OK
 
 
-Common Endpoints:
-/
-
-/register
-
-/admin/products
-
-/admin/customers
-
-/admin/categories
-
-/admin/Dashboard
